@@ -1,7 +1,8 @@
 name: diozz
-description: It helps you in fixing errors instead of you and simplifies the currency of sending the query to the server.
-version: 0.0.1
-homepage:
+description: The diozz library helps you to deal with APIs easily and speed up the process of writing code.
+version: 0.0.1+1-beta
+author: Mohamed Abu.elezz <m.abuelezz97@gmail.com>
+homepage: https://www.linkedin.com/in/mohamed-abuelezz/
 repository: https://github.com/Mohamed-Abuelezz/Diozz.git
 
 
@@ -15,6 +16,7 @@ dependencies:
   dio: ^4.0.4
   #http_parser: ^4.0.0
   connectivity: ^3.0.6
+  palestine_console: ^0.0.10
 
 dev_dependencies:
   flutter_test:
