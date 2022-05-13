@@ -2,6 +2,8 @@ name: diozz
 description: It helps you in fixing errors instead of you and simplifies the currency of sending the query to the server.
 version: 0.0.1
 homepage:
+repository: https://github.com/Mohamed-Abuelezz/Diozz.git
+
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
