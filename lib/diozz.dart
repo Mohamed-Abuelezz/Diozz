@@ -153,7 +153,6 @@ class Diozz {
       }
     } else {
       Print.red('noInternetsError');
-
       return responsMap(
           status: false,
           message: AppLocalizations.of(context)!.no_internet_error,
