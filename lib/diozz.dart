@@ -86,9 +86,12 @@ class Diozz {
                Print.red(onError.toString());
           });
         }
-        Print.green('Response Diozz is >>> ' + response.toString());
 
         if (response.statusCode >= 200 && response.statusCode <= 299) {
+                Print.red(response.statusCode);
+
+                Print.green('Response >>> ' + response.toString());
+
           return responsMap(
               status: response.data['status'],
               message: response.data['message'],
