@@ -1,0 +1,7 @@
+{
+    "global_error": "An error occurred, please check the internet first or review the application administration !",
+    "no_internet_error" : "Please Connect to Internet !",
+    "weak_internet_error" : "Internet signal weak !",
+    "server_error" : "There is a problem with the server, please check the application management",
+    "lost_page" : "Error : you left the page"
+}   
