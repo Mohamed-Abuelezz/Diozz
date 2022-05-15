@@ -80,7 +80,7 @@ class Diozz {
         } else if (methodType.name == 'POST') {
           response = await dio
               .post(url,
-                  data: FormData.fromMap(dioBody),
+                  data: dioBody,
                   options: Options(
                     headers: dioHeaders,
                   ))
@@ -91,7 +91,7 @@ class Diozz {
         } else if (methodType.name == 'PUT') {
           response = await dio
               .put(url,
-                  data: FormData.fromMap(dioBody),
+                  data: dioBody,
                   options: Options(
                     headers: dioHeaders,
                   ))
@@ -102,7 +102,7 @@ class Diozz {
         } else if (methodType.name == 'DELETE') {
           response = await dio
               .delete(url,
-                  data: FormData.fromMap(dioBody),
+                  data: dioBody,
                   options: Options(
                     headers: dioHeaders,
                   ))
@@ -115,7 +115,7 @@ class Diozz {
 
         if (response.statusCode! >= 200 && response.statusCode! <= 299) {
           return responsMap(
-              status: response.data['status'],
+              status: true,
               message: response.data['message'] ?? response.data['messages'],
               data: response.data['data']);
         } else if (response.statusCode! >= 500) {
