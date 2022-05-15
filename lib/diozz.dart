@@ -12,6 +12,7 @@ import 'package:simple_connection_checker/simple_connection_checker.dart';
 
 import 'l10n/generated/diozz_localizations.dart';
 export 'src/enums.dart';
+export 'l10n/generated/diozz_localizations.dart';
 
 /// A Calculator.
 class Diozz {
@@ -19,7 +20,7 @@ class Diozz {
 
   // static String globalError = (appLanguage == 'ar'
   //     ? '! حدث خطأ يرجي التأكد من الانترنت اولا او مراجعه اداره التطبيق'
-  //     : 'An error occurred, please check the internet first or review the application administration !');
+  //     : 'An Error occurred, please check the internet first or review the application administration !');
   // static String noInternetsError = (appLanguage == 'ar'
   //     ? 'برجاء الإتصال بالإنترنت !'
   //     : 'Please Connect to Internet !');
@@ -60,7 +61,6 @@ class Diozz {
 
     late Response response;
     bool isSocketException = false;
-
     // var connectivityResult = ConnectivityResult.mobile;
     if (isConnected) {
       try {
@@ -116,52 +116,57 @@ class Diozz {
         if (response.statusCode! >= 200 && response.statusCode! <= 299) {
           return responsMap(
               status: response.data['status'],
-              message: response.data['message'],
+              message: response.data['message'] ?? response.data['messages'],
               data: response.data['data']);
         } else if (response.statusCode! >= 500) {
           Print.red(response.statusCode.toString());
 
           return responsMap(
               status: false,
-              message: AppLocalizations.of(context)!.server_error);
+              message: DizzAppLocalizations.of(context)!.server_error);
         } else if (isSocketException) {
           return responsMap(
               status: false,
-              message: AppLocalizations.of(context)!.weak_internet_error);
+              message: DizzAppLocalizations.of(context)!.weak_internet_error);
         } else if (response.statusCode == 401 || response.statusCode == 302) {
           Print.red(response.statusCode.toString());
 
           return responsMap(
-              status: false, message: response.data['message'], data: null);
+              status: false,
+              message: response.data['message'] ?? response.data['messages'],
+              data: null);
         } else if (response.statusCode! >= 400 && response.statusCode! <= 499) {
           Print.red(response.statusCode.toString());
 
           return responsMap(
-              status: false, message: response.data['message'], data: null);
+              status: false,
+              message: response.data['message'] ?? response.data['messages'],
+              data: null);
         } else {
           return responsMap(
               status: false,
-              message: AppLocalizations.of(context)!.global_error,
-              data: null);
+              message: DizzAppLocalizations.of(context)!.global_error,
+              data: "Diozz translated");
         }
       } catch (e) {
         log(e.toString());
         return responsMap(
             status: false,
-            message: AppLocalizations.of(context)!.global_error,
-            data: null);
+            message: DizzAppLocalizations.of(context)!.global_error,
+            data: "Diozz translated");
       }
     } else {
       Print.red('noInternetsError');
       return responsMap(
           status: false,
-          message: AppLocalizations.of(context)!.no_internet_error,
-          data: null);
+          message: DizzAppLocalizations.of(context)!.no_internet_error,
+          data: "Diozz translated");
     }
   }
 
-  static Map responsMap({dynamic status, String? message, dynamic data}) {
-    //   print('from inside responsMap');
-    return {"status": status, "message": message.toString(), "data": data};
+  static Map responsMap(
+      {required bool status, required dynamic message, dynamic data}) {
+    log('from inside responsMap ${message.toString()}');
+    return {"status": status, "message": message, "data": data};
   }
 }
